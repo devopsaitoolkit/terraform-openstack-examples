@@ -79,7 +79,7 @@ terraform output fqdn
 ## Security considerations
 
 - Publishing a public DNS name advertises the address to the world — combine with
-  least-privilege security groups (see [`security/security-group`](../../security/security-group/)).
+  least-privilege security groups (see [`security/security-group`](../../security/security-group-basic/)).
 - Be careful publishing internal hostnames into public zones; it can leak
   infrastructure naming. Use a dedicated zone for externally reachable services.
 

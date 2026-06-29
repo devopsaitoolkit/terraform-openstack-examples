@@ -86,7 +86,7 @@ terraform apply
 - Without SNAT, internal hosts are reachable by their real addresses from the
   routed network — there is no NAT boundary to lean on. Rely on least-privilege
   security groups and, ideally, upstream firewalling (see
-  [`security/security-group`](../../security/security-group/)).
+  [`security/security-group`](../../security/security-group-basic/)).
 - Confirm the internal CIDRs are intended to be routable; accidentally exposing
   an RFC1918 range on a routed fabric can make hosts reachable more widely than
   expected.

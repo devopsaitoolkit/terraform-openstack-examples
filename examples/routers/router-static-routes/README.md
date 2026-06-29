@@ -70,7 +70,7 @@ terraform apply
 - Static routes extend reachability — make sure you are not inadvertently opening
   a path from a sensitive subnet to an external range. Routing does not bypass
   security groups, so keep them least-privilege (see
-  [`security/security-group`](../../security/security-group/)).
+  [`security/security-group`](../../security/security-group-basic/)).
 - Document each route's purpose (the map keys do this) so stale routes to
   decommissioned networks are easy to spot and remove.
 

@@ -84,7 +84,7 @@ terraform apply
 - A persistent root volume retains data after the instance stops; snapshot and
   encrypt it (via an encrypted `volume_type`) when it may hold sensitive data.
 - Define least-privilege security groups explicitly instead of relying on
-  `default` — see [`security/security-group`](../../security/security-group/).
+  `default` — see [`security/security-group`](../../security/security-group-basic/).
 - Inject SSH access via a managed key pair, never passwords, and keep secrets out
   of user-data; use application credentials or a secrets manager.
 

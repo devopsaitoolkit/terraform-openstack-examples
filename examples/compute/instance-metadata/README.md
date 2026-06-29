@@ -83,7 +83,7 @@ terraform apply
   any process in the guest and by project users via the API. Use application
   credentials or a secrets manager instead.
 - Define least-privilege security groups explicitly rather than relying on
-  `default` — see [`security/security-group`](../../security/security-group/).
+  `default` — see [`security/security-group`](../../security/security-group-basic/).
 - Inject SSH access via a managed key pair, never passwords.
 
 ## Troubleshooting

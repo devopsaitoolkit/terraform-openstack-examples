@@ -67,7 +67,7 @@ terraform output floating_ip_addresses
   public addresses held by your project — tag and review them so stale
   reservations are reclaimed.
 - When you do associate them, enforce least-privilege security groups (see
-  [`security/security-group`](../../security/security-group/)).
+  [`security/security-group`](../../security/security-group-basic/)).
 
 ## Troubleshooting
 

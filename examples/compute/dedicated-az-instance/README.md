@@ -82,7 +82,7 @@ terraform apply
 
 - The `default` security group is often permissive **inside** the project but
   blocks external ingress. Define least-privilege groups explicitly — see
-  [`security/security-group`](../../security/security-group/).
+  [`security/security-group`](../../security/security-group-basic/).
 - Never bake secrets into user-data; use application credentials and a metadata
   service or a secrets manager.
 - Always inject SSH access via a managed key pair rather than passwords.

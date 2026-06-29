@@ -94,7 +94,7 @@ terraform apply
   or `user_data`. Use application credentials or a secrets manager instead.
 - Inject SSH access via a managed key pair, not passwords.
 - The `default` security group rarely permits external SSH; define a
-  least-privilege group — see [`security/security-group`](../../security/security-group/).
+  least-privilege group — see [`security/security-group`](../../security/security-group-basic/).
 
 ## Troubleshooting
 

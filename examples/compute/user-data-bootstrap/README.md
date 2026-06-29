@@ -82,7 +82,7 @@ terraform apply
 - Keep the script idempotent and minimal; large bootstrap logic widens the
   attack surface and is harder to audit.
 - Inject SSH access via a managed key pair, not passwords, and define
-  least-privilege security groups — see [`security/security-group`](../../security/security-group/).
+  least-privilege security groups — see [`security/security-group`](../../security/security-group-basic/).
 
 ## Troubleshooting
 

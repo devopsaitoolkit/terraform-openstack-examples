@@ -81,7 +81,7 @@ terraform apply
 
 - Every instance shares `security_group_names`; define least-privilege groups
   explicitly rather than relying on `default` — see
-  [`security/security-group`](../../security/security-group/).
+  [`security/security-group`](../../security/security-group-basic/).
 - Inject SSH access via a managed key pair, never passwords, and never bake
   secrets into user-data; use application credentials or a secrets manager.
 - A larger fleet is a larger attack surface — keep images patched and rebuild

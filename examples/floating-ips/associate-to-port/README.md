@@ -70,7 +70,7 @@ terraform apply
 
 - Associating a floating IP exposes the port to inbound traffic from outside the
   cloud. Make sure the port's security groups only allow the ports you intend
-  (see [`security/security-group`](../../security/security-group/)).
+  (see [`security/security-group`](../../security/security-group-basic/)).
 - Audit floating IP associations regularly; a forgotten association can keep a
   decommissioned workload publicly reachable.
 

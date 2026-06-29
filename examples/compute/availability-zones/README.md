@@ -82,7 +82,7 @@ List the zones available to you with `openstack availability zone list`.
 
 - All instances share `security_group_names`; define least-privilege groups
   explicitly rather than relying on `default` — see
-  [`security/security-group`](../../security/security-group/).
+  [`security/security-group`](../../security/security-group-basic/).
 - Inject SSH access via a managed key pair, never passwords, and keep secrets out
   of user-data; use application credentials or a secrets manager.
 - Spreading across zones increases availability but also the surface area — keep

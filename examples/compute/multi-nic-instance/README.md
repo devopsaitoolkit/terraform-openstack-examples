@@ -82,7 +82,7 @@ terraform apply
 ## Security considerations
 
 - Each NIC is a separate trust boundary. Apply least-privilege security groups
-  per plane — see [`security/security-group`](../../security/security-group/) —
+  per plane — see [`security/security-group`](../../security/security-group-basic/) —
   rather than one permissive `default` group on both.
 - A dual-homed instance can bridge networks. Disable IP forwarding in the guest
   unless routing between the two networks is an explicit, reviewed requirement.

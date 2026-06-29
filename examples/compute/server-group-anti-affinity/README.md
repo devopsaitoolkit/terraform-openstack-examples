@@ -82,7 +82,7 @@ terraform apply
 - Anti-affinity is an availability control, not a security boundary; isolate
   tenants/workloads with projects and security groups instead.
 - Pair members with least-privilege security groups — see
-  [`security/security-group`](../../security/security-group/).
+  [`security/security-group`](../../security/security-group-basic/).
 - Inject SSH access via a managed key pair rather than passwords, and never bake
   secrets into user-data.
 

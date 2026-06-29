@@ -71,7 +71,7 @@ terraform apply
   or use a gateway-less router for east-west-only routing.
 - Routing between subnets is governed by security groups on each port — attaching
   the router does not bypass them. Keep groups least-privilege (see
-  [`security/security-group`](../../security/security-group/)).
+  [`security/security-group`](../../security/security-group-basic/)).
 
 ## Troubleshooting
 

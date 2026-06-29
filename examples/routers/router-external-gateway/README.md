@@ -73,7 +73,7 @@ To give instances connectivity, attach internal subnets with
   router without a gateway.
 - The gateway alone does not allow inbound traffic — that requires floating IPs
   plus permissive security groups. Keep ingress least-privilege (see
-  [`security/security-group`](../../security/security-group/)).
+  [`security/security-group`](../../security/security-group-basic/)).
 
 ## Troubleshooting
 

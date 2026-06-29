@@ -64,7 +64,7 @@ terraform output floating_ip_address
 
 - A floating IP makes a port reachable from outside the cloud — it does **not**
   open any ports by itself. Pair it with least-privilege security groups (see
-  [`security/security-group`](../../security/security-group/)).
+  [`security/security-group`](../../security/security-group-basic/)).
 - Reserved-but-unattached floating IPs are inert, but still inventory them with
   tags so abandoned public addresses are easy to reclaim.
 

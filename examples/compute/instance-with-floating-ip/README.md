@@ -71,7 +71,7 @@ terraform apply
   network and the external network.
 - **Scaling considerations:** Floating IPs are a scarce, quota-limited resource.
   For many public endpoints front instances with a load balancer
-  ([`networking/loadbalancer`](../../networking/loadbalancer/)) and a single
+  ([`networking/loadbalancer`](../../load-balancers/octavia-basic/)) and a single
   floating IP instead of one per instance.
 - **Performance considerations:** Floating IP traffic is SNAT/DNAT'd through the
   network node(s); for very high throughput consider provider networks or
@@ -84,7 +84,7 @@ terraform apply
 
 - A floating IP exposes the instance to the internet — attach a least-privilege
   security group to the port and open only the ports you need. See
-  [`security/security-group`](../../security/security-group/).
+  [`security/security-group`](../../security/security-group-basic/).
 - Never bake secrets into user-data; use application credentials and a metadata
   service or a secrets manager.
 - Always inject SSH access via a managed key pair rather than passwords, and

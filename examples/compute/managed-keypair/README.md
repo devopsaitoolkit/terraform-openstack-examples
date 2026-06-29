@@ -84,7 +84,7 @@ terraform apply
   pair and rebuilding/cycling instances rather than editing a key in place.
 - The `default` security group rarely permits external SSH. Define a
   least-privilege group that allows port 22 only from trusted CIDRs — see
-  [`security/security-group`](../../security/security-group/).
+  [`security/security-group`](../../security/security-group-basic/).
 
 ## Troubleshooting
 

@@ -83,7 +83,7 @@ terraform apply
 - The example user is created with `lock_passwd: true` and key-only login; keep
   it that way and avoid `ssh_pwauth: true`.
 - Pair with least-privilege security groups — see
-  [`security/security-group`](../../security/security-group/).
+  [`security/security-group`](../../security/security-group-basic/).
 
 ## Troubleshooting
 
