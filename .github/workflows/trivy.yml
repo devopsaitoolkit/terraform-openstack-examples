@@ -1,0 +1,63 @@
+name: Trivy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# security-events: write lets us publish the SARIF report to the GitHub
+# "Security > Code scanning" tab so every misconfiguration is reviewable.
+permissions:
+  contents: read
+  security-events: write
+
+env:
+  TRIVY_VERSION: "0.71.2"
+
+jobs:
+  trivy-config:
+    name: Trivy IaC config scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Trivy data
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/trivy
+          key: trivy-${{ env.TRIVY_VERSION }}-${{ hashFiles('**/*.tf') }}
+          restore-keys: trivy-${{ env.TRIVY_VERSION }}-
+
+      - name: Install Trivy
+        run: |
+          curl -fsSL -o trivy.tar.gz \
+            "https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.tar.gz"
+          tar -xzf trivy.tar.gz trivy
+          chmod +x trivy
+          ./trivy --version
+
+      # Misconfiguration scan of all Terraform (Trivy recurses every root module
+      # automatically). SARIF captures ALL severities for the Security tab.
+      - name: Scan IaC (SARIF, all severities)
+        run: ./trivy config . --format sarif --output trivy.sarif --exit-code 0
+
+      - name: Upload SARIF to code scanning
+        if: always()
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: trivy.sarif
+          category: trivy-config
+
+      # Human-readable summary in the run log (never fails the build).
+      - name: Findings summary
+        if: always()
+        run: ./trivy config . --format table --exit-code 0
+
+      # Gate: fail only on HIGH/CRITICAL misconfigurations. Intentional, documented
+      # medium patterns in the examples (public HTTPS listeners, allow-all egress,
+      # dynamic for_each rules the scanner can't resolve) are surfaced in the
+      # Security tab but do not block CI.
+      - name: Gate on HIGH/CRITICAL
+        run: ./trivy config . --severity HIGH,CRITICAL --exit-code 1
