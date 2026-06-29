@@ -1,0 +1,14 @@
+title: "[idea] <short title>"
+labels: ["ideas"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Your idea
+      description: A pattern, example, or module you'd like to see — or a better way to do something here.
+    validations: { required: true }
+  - type: textarea
+    id: context
+    attributes:
+      label: Real-world context
+      description: What problem does this solve in production? (Redact anything sensitive.)

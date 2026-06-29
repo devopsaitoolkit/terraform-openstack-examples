@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions — questions & ideas
+    url: https://github.com/devopsaitoolkit/terraform-openstack-examples/discussions
+    about: Ask how to model something in Terraform/OpenStack, or share a pattern.
+  - name: 📚 Advanced OpenStack guides
+    url: https://devopsaitoolkit.com/blog/
+    about: In-depth OpenStack and Terraform guides.
+  - name: 🧪 Terraform & config validators
+    url: https://devopsaitoolkit.com/validators/
+    about: Validate Terraform and YAML in your browser.

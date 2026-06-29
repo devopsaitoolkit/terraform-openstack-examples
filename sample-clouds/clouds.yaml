@@ -1,0 +1,48 @@
+# Sample clouds.yaml for the OpenStack Terraform provider.
+#
+# Place this at one of:
+#   ./clouds.yaml            (current dir; gitignored in this repo)
+#   ~/.config/openstack/clouds.yaml
+#   /etc/openstack/clouds.yaml
+#
+# Then select an entry with `export OS_CLOUD=openstack` or the provider's
+# `cloud = "openstack"` argument. NEVER commit a clouds.yaml with real secrets.
+#
+# Prefer APPLICATION CREDENTIALS over a username/password (see the second entry):
+# they are scoped, revocable, and don't expose your password.
+
+clouds:
+  # --- Password auth (simplest; fine for a quick start) ---
+  openstack:
+    auth:
+      auth_url: https://keystone.example.com:5000/v3
+      username: "my-user"
+      password: "CHANGE-ME"          # better: keep in secure.yaml or env var
+      project_name: "my-project"
+      user_domain_name: "Default"
+      project_domain_name: "Default"
+    region_name: "RegionOne"
+    interface: "public"
+    identity_api_version: 3
+
+  # --- Application credential auth (recommended) ---
+  openstack-appcred:
+    auth_type: "v3applicationcredential"
+    auth:
+      auth_url: https://keystone.example.com:5000/v3
+      application_credential_id: "CHANGE-ME"
+      application_credential_secret: "CHANGE-ME"
+    region_name: "RegionOne"
+    interface: "public"
+    identity_api_version: 3
+
+  # --- A second region, for the multi-region examples ---
+  openstack-region2:
+    auth_type: "v3applicationcredential"
+    auth:
+      auth_url: https://keystone-r2.example.com:5000/v3
+      application_credential_id: "CHANGE-ME"
+      application_credential_secret: "CHANGE-ME"
+    region_name: "RegionTwo"
+    interface: "public"
+    identity_api_version: 3

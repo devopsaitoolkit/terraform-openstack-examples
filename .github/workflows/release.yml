@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Count examples and modules
+        id: stats
+        run: |
+          EX=$(find examples -type f -name main.tf -exec dirname {} \; | sort -u | wc -l)
+          MOD=$(find modules -maxdepth 1 -mindepth 1 -type d | wc -l)
+          echo "examples=$EX" >> "$GITHUB_OUTPUT"
+          echo "modules=$MOD" >> "$GITHUB_OUTPUT"
+      - uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          generate_release_notes: true
+          body: |
+            Production-quality Terraform examples for OpenStack.
+
+            - Examples: **${{ steps.stats.outputs.examples }}**
+            - Reusable modules: **${{ steps.stats.outputs.modules }}**
+
+            See CHANGELOG.md for details.

@@ -1,0 +1,29 @@
+name: "🐛 Bug report"
+description: An example or module doesn't work as documented.
+title: "[bug] <short description>"
+labels: ["bug"]
+body:
+  - type: input
+    id: path
+    attributes:
+      label: Which example or module?
+      placeholder: examples/compute/boot-from-volume
+    validations: { required: true }
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Steps, expected vs. actual, and any Terraform/OpenStack error output (redacted).
+    validations: { required: true }
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      placeholder: "Terraform 1.9.8, provider openstack 3.4.0, OpenStack 2024.1 (Caracal)"
+  - type: checkboxes
+    id: secrets
+    attributes:
+      label: Safety
+      options:
+        - label: I removed all credentials, tokens, IPs, and secrets from the output above.
+          required: true

@@ -1,0 +1,22 @@
+name: "➕ New example / module request"
+description: Suggest a new Terraform example or reusable module.
+title: "[request] <what you'd like to see>"
+labels: ["enhancement", "help wanted"]
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options: [compute, networking, storage, images, security, identity, load-balancers, floating-ips, routers, dns, projects, users, quotas, monitoring, backup, snapshots, gpu, high-availability, multi-region, kolla-ansible, module]
+    validations: { required: true }
+  - type: textarea
+    id: desc
+    attributes:
+      label: What should it demonstrate?
+    validations: { required: true }
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to open a PR for this (we'll help review).

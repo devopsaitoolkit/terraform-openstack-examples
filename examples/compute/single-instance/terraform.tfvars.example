@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+instance_name = "web-01"
+flavor_name   = "m1.small"
+image_name    = "ubuntu-22.04"
+network_name  = "private"
+key_pair_name = "my-keypair"
+
+security_group_names = ["default"]
+tags                 = ["managed-by:terraform", "env:dev", "app:web"]

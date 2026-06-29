@@ -1,0 +1,39 @@
+# Local .terraform directories
+**/.terraform/*
+# Dependency lock files are regenerated per environment in an examples repo
+.terraform.lock.hcl
+
+# State files — never commit state (may contain secrets)
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+
+# Variable files that may contain secrets (commit *.example only)
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+!*.auto.tfvars.example
+
+# clouds.yaml may contain credentials — only the samples are committed
+clouds.yaml
+!sample-clouds/clouds.yaml
+secure.yaml
+
+# CLI config / plan artifacts
+.terraformrc
+terraform.rc
+*.tfplan
+*.tfplan.*
+
+# Python (tooling)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

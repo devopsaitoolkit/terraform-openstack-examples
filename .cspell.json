@@ -1,0 +1,38 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": [
+    "**/.terraform/**",
+    "LICENSE",
+    "**/*.tfstate*",
+    "assets/**"
+  ],
+  "dictionaries": ["en_US", "softwareTerms", "tf-openstack-terms"],
+  "dictionaryDefinitions": [
+    { "name": "tf-openstack-terms", "path": "./.cspell-dict.txt", "addWords": true }
+  ],
+  "allowCompoundWords": true,
+  "ignoreRegExpList": [
+    "/```[\\s\\S]*?```/",
+    "/`[^`]+`/",
+    "/\\bhttps?:\\/\\/\\S+/"
+  ],
+  "words": [
+    "openstack", "terraform", "tofu", "opentofu", "hashicorp", "devopsaitoolkit",
+    "keystone", "nova", "neutron", "cinder", "glance", "octavia", "designate",
+    "swift", "ironic", "magnum", "heat", "barbican", "aodh", "gnocchi", "ceilometer",
+    "kolla", "ansible", "openinfra", "clouds", "appcred", "tfvars", "tfstate",
+    "tflint", "tfsec", "checkov", "hcl", "subnet", "subnets", "vlan", "vlans",
+    "vxlan", "vnic", "vnics", "dhcp", "ipv4", "ipv6", "cidr", "snat", "dnat",
+    "floatingip", "floatingips", "loadbalancer", "listeners", "healthmonitor",
+    "datastore", "quotas", "keypair", "keypairs", "cloudinit", "userdata",
+    "metadata", "hypervisor", "hypervisors", "availability", "affinity",
+    "antiaffinity", "preemptible", "multiattach", "blockstorage", "snapshots",
+    "recordset", "recordsets", "ptr", "rbac", "fwaas", "vpnaas", "trunk",
+    "namespace", "namespaces", "kubeconfig", "provisioner", "provisioners",
+    "idempotent", "backend", "backends", "remotestate", "statefile", "tfplan",
+    "datacenter", "datacenters", "failover", "vips", "vrrp", "keepalived",
+    "prometheus", "grafana", "novalidhost", "uuid", "uuids", "kvm", "qemu",
+    "pci", "vgpu", "vgpus", "numa", "hugepages", "sriov", "ovn", "ovs"
+  ]
+}

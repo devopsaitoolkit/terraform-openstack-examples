@@ -1,0 +1,105 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.tf-plugin-cache
+
+jobs:
+  fmt:
+    name: terraform fmt
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - run: terraform fmt -check -recursive
+
+  validate:
+    name: terraform validate (examples + modules)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - name: Cache providers
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: tf-providers-${{ hashFiles('**/versions.tf') }}
+          restore-keys: tf-providers-
+      - name: Validate every example and module
+        run: |
+          mkdir -p "$TF_PLUGIN_CACHE_DIR"
+          fail=0; total=0
+          while IFS= read -r dir; do
+            total=$((total+1))
+            echo "::group::validate $dir"
+            if ( cd "$dir" && terraform init -backend=false -input=false >/dev/null && terraform validate -no-color ); then
+              echo "OK $dir"
+            else
+              echo "::error::validate failed in $dir"; fail=$((fail+1))
+            fi
+            echo "::endgroup::"
+          done < <(find examples modules -type f -name 'main.tf' -exec dirname {} \; | sort -u)
+          echo "Validated $total directories; $fail failed."
+          test "$fail" -eq 0
+
+  test:
+    name: terraform test (modules, mock provider)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+      - name: Cache providers
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          key: tf-providers-${{ hashFiles('**/versions.tf') }}
+          restore-keys: tf-providers-
+      - name: Run native tests where present
+        run: |
+          mkdir -p "$TF_PLUGIN_CACHE_DIR"
+          fail=0
+          while IFS= read -r tdir; do
+            dir="$(dirname "$tdir")"
+            echo "::group::terraform test $dir"
+            if ( cd "$dir" && terraform init -backend=false -input=false >/dev/null && terraform test ); then
+              echo "OK $dir"
+            else
+              echo "::error::tests failed in $dir"; fail=$((fail+1))
+            fi
+            echo "::endgroup::"
+          done < <(find modules examples -type d -name tests | sort -u)
+          test "$fail" -eq 0
+
+  markdownlint:
+    name: Markdown lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: "**/*.md"
+
+  spellcheck:
+    name: Spell check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: streetsidesoftware/cspell-action@v6
+        with:
+          files: "**/*.md"
+          config: ".cspell.json"
+          incremental_files_only: false
