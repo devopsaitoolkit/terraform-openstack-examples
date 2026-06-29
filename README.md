@@ -9,6 +9,7 @@
 [![CI](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/ci.yml/badge.svg)](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/ci.yml)
 [![Link check](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/link-check.yml/badge.svg)](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/link-check.yml)
 [![TFLint](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/tflint.yml/badge.svg)](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/tflint.yml)
+[![tfsec](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/tfsec.yml/badge.svg)](https://github.com/devopsaitoolkit/terraform-openstack-examples/actions/workflows/tfsec.yml)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
 [![Terraform](https://img.shields.io/badge/terraform-%3E%3D1.3-7B42BC.svg)](https://www.terraform.io/)
 [![Provider](https://img.shields.io/badge/openstack%20provider-~%3E%203.0-da1a32.svg)](https://registry.terraform.io/providers/terraform-provider-openstack/openstack/latest)

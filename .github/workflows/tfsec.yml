@@ -1,0 +1,56 @@
+name: tfsec
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# security-events: write lets us upload the SARIF report to the GitHub
+# "Security > Code scanning" tab so every finding is reviewable in the UI.
+permissions:
+  contents: read
+  security-events: write
+
+env:
+  TFSEC_VERSION: v1.28.11
+
+jobs:
+  tfsec:
+    name: tfsec security scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install tfsec
+        run: |
+          curl -fsSL -o tfsec \
+            "https://github.com/aquasecurity/tfsec/releases/download/${TFSEC_VERSION}/tfsec-linux-amd64"
+          chmod +x tfsec
+          ./tfsec --version
+
+      # Full scan of every example and module (--force-all-dirs walks all root
+      # modules, not just the repo root). --soft-fail keeps this step green; the
+      # gate step below is what fails CI. SARIF captures ALL severities.
+      - name: Scan (SARIF, all severities)
+        run: ./tfsec . --force-all-dirs --format sarif --out tfsec.sarif --soft-fail
+
+      - name: Upload SARIF to code scanning
+        if: always()
+        continue-on-error: true
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: tfsec.sarif
+          category: tfsec
+
+      # Human-readable summary in the run log (never fails the build).
+      - name: Findings summary
+        if: always()
+        run: ./tfsec . --force-all-dirs --no-color --soft-fail
+
+      # Gate: fail the build on HIGH or CRITICAL findings. Lower-severity,
+      # intentional patterns in the examples (public HTTPS listeners, allow-all
+      # egress, dynamic for_each rules tfsec can't resolve) are reported in the
+      # Security tab but do not block CI.
+      - name: Gate on HIGH/CRITICAL
+        run: ./tfsec . --force-all-dirs --minimum-severity HIGH --no-color

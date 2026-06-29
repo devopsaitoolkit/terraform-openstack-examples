@@ -37,3 +37,6 @@ venv/
 .idea/
 .vscode/
 *.swp
+
+# Security scan artifacts
+*.sarif

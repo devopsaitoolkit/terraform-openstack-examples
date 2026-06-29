@@ -27,3 +27,5 @@ toset
 vcpus
 virtio
 xlarge
+tfsec
+sarif
