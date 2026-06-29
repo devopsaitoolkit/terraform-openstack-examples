@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Bootstrap script rendered by Terraform's templatefile() and passed to Nova as
+# user_data. cloud-init executes the script on first boot as root.
+set -euo pipefail
+
+# Templated values are injected by Terraform at plan/apply time.
+HOSTNAME="${hostname}"
+MOTD="${motd}"
+
+echo "[bootstrap] starting on $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+# Set the hostname from the templated variable.
+hostnamectl set-hostname "$HOSTNAME" || true
+
+# Refresh package metadata and install a baseline package non-interactively.
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -y
+apt-get install -y --no-install-recommends nginx
+
+# Render the message of the day from the templated variable.
+echo "$MOTD" > /etc/motd
+
+# Drop a marker file so you can confirm bootstrap completed.
+cat > /var/lib/bootstrap-complete <<EOF
+hostname=$HOSTNAME
+completed_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+EOF
+
+echo "[bootstrap] ${motd}"
+echo "[bootstrap] finished for host $HOSTNAME"

@@ -1,0 +1,29 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+#
+# ADMIN credentials required: this creates a Nova flavor.
+
+cloud       = "openstack-admin"
+flavor_name = "g1.large"
+vcpus       = 8
+ram_mb      = 32768
+disk_gb     = 80
+is_public   = false
+
+# --- Choose ONE acceleration style ---
+
+# PCI passthrough (whole GPU). 'a100' must be a [pci] alias on controller+compute.
+extra_specs = {
+  "pci_passthrough:alias"              = "a100:1"
+  "aggregate_instance_extra_specs:gpu" = "true"
+  "hw:cpu_policy"                      = "dedicated"
+}
+
+# vGPU alternative (time-sliced). Uncomment instead of the block above:
+# extra_specs = {
+#   "resources:VGPU"                     = "1"
+#   "aggregate_instance_extra_specs:gpu" = "true"
+# }
+
+server_group_name     = "gpu-anti-affinity"
+server_group_policies = ["anti-affinity"]

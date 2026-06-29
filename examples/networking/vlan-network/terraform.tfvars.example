@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+# NOTE: requires admin credentials, a host bridge mapping for physical_network,
+# and a vlan_id inside the permitted VLAN range for that physnet.
+
+cloud = "openstack"
+
+network_name     = "example-vlan-network"
+subnet_name      = "example-vlan-subnet"
+cidr             = "10.40.0.0/24"
+physical_network = "physnet1"
+vlan_id          = 100
+dns_nameservers  = ["1.1.1.1"]

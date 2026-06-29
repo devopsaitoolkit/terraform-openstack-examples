@@ -1,0 +1,39 @@
+#cloud-config
+# Rendered by Terraform's templatefile() and passed to Nova as user_data.
+# cloud-init consumes this declarative config on first boot.
+
+package_update: true
+package_upgrade: false
+
+# Packages to install on first boot (templated from var.packages).
+packages:
+%{ for pkg in packages ~}
+  - ${pkg}
+%{ endfor ~}
+
+# Create an unprivileged sudo user with the supplied SSH public key.
+users:
+  - default
+  - name: appuser
+    groups: [sudo]
+    shell: /bin/bash
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    lock_passwd: true
+    ssh_authorized_keys:
+      - ${ssh_authorized_key}
+
+write_files:
+  - path: /etc/motd
+    permissions: "0644"
+    content: |
+      Provisioned by Terraform + cloud-init on OpenStack.
+  - path: /var/lib/cloud-init-marker
+    permissions: "0644"
+    content: |
+      bootstrapped=true
+
+runcmd:
+  - [ systemctl, enable, --now, qemu-guest-agent ]
+  - [ sh, -c, "echo cloud-init runcmd completed at $(date -u) >> /var/log/tf-cloud-init.log" ]
+
+final_message: "cloud-init finished after $UPTIME seconds"

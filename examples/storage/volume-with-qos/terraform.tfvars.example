@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud        = "openstack"
+qos_name     = "high-iops"
+qos_consumer = "front-end"
+qos_specs = {
+  read_iops_sec  = "2000"
+  write_iops_sec = "1000"
+}
+volume_type_name        = "high-iops"
+volume_type_description = "QoS-limited volume type"
+volume_name             = "example-qos-volume"
+volume_size             = 10

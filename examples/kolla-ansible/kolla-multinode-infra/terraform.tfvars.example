@@ -1,0 +1,21 @@
+# Copy to terraform.tfvars and adjust for your cluster size and image.
+
+cloud       = "openstack"
+name_prefix = "kolla"
+
+# Existing management network (e.g. created by ../kolla-network-prereqs).
+network_name = "kolla-mgmt-net"
+
+controller_count = 3
+compute_count    = 2
+
+controller_flavor = "m1.large"
+compute_flavor    = "m1.xlarge"
+image_name        = "ubuntu-22.04"
+
+# Paste your SSH public key (the matching private key drives Ansible).
+public_key = "ssh-ed25519 AAAA... you@example.com"
+
+server_group_policy = "soft-anti-affinity"
+
+tags = ["managed-by:terraform", "env:lab", "example:kolla-multinode-infra"]

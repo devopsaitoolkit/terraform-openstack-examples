@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud = "openstack"
+
+instance_name         = "example-bfv"
+flavor_name           = "m1.small"
+image_name            = "ubuntu-22.04"
+network_name          = "private"
+root_volume_size      = 20
+delete_on_termination = true
+key_pair_name         = "my-keypair"
+security_group_names  = ["default"]

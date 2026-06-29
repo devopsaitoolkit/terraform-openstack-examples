@@ -1,0 +1,22 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud            = "openstack"
+image_name       = "ubuntu-22.04-shared"
+image_source_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+disk_format      = "qcow2"
+container_format = "bare"
+web_download     = true
+
+min_disk_gb = 8
+min_ram_mb  = 512
+
+# Project (tenant) UUIDs that should be able to boot this image.
+# Find them with: openstack project list
+member_project_ids = [
+  "11111111-1111-1111-1111-111111111111",
+  "22222222-2222-2222-2222-222222222222",
+]
+member_status = "accepted"
+
+tags = ["managed-by:terraform", "shared:true"]

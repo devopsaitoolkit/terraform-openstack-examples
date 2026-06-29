@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+network_name     = "example-network"
+subnet_name      = "example-subnet"
+cidr             = "10.10.0.0/24"
+dns_nameservers  = ["1.1.1.1", "8.8.8.8"]
+allocation_start = "10.10.0.10"
+allocation_end   = "10.10.0.200"

@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+secgroup_name = "locked-down-baseline"
+
+# Approved internal resolver and outbound HTTPS scope.
+dns_resolver_cidr = "10.0.0.2/32"
+egress_https_cidr = "10.0.0.0/8"
+
+tags = ["managed-by:terraform", "env:prod", "posture:default-deny"]

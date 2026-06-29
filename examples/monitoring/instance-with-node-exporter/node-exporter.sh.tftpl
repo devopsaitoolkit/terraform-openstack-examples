@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Rendered by Terraform templatefile() and passed to Nova as user_data.
+# cloud-init runs this on first boot as root to install Prometheus node_exporter
+# as a hardened systemd service.
+set -euo pipefail
+
+NODE_EXPORTER_VERSION="${node_exporter_version}"
+METRICS_PORT="${metrics_port}"
+ARCH="linux-amd64"
+TARBALL="node_exporter-$${NODE_EXPORTER_VERSION}.$${ARCH}.tar.gz"
+BASE_URL="https://github.com/prometheus/node_exporter/releases/download"
+
+echo "[node-exporter] installing v$${NODE_EXPORTER_VERSION} on $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+
+# Dedicated unprivileged system user — node_exporter never needs root.
+id node_exporter >/dev/null 2>&1 || useradd --no-create-home --shell /usr/sbin/nologin node_exporter
+
+cd /tmp
+curl -fsSL -o "$${TARBALL}" "$${BASE_URL}/v$${NODE_EXPORTER_VERSION}/$${TARBALL}"
+tar xzf "$${TARBALL}"
+install -m 0755 "node_exporter-$${NODE_EXPORTER_VERSION}.$${ARCH}/node_exporter" /usr/local/bin/node_exporter
+rm -rf "$${TARBALL}" "node_exporter-$${NODE_EXPORTER_VERSION}.$${ARCH}"
+
+cat > /etc/systemd/system/node_exporter.service <<EOF
+[Unit]
+Description=Prometheus Node Exporter
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+ExecStart=/usr/local/bin/node_exporter --web.listen-address=:$${METRICS_PORT}
+Restart=on-failure
+# Hardening: node_exporter only reads host metrics, never writes.
+ProtectSystem=strict
+ProtectHome=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable --now node_exporter
+
+echo "[node-exporter] listening on :$${METRICS_PORT}; install complete"

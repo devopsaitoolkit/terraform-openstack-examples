@@ -1,0 +1,31 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud     = "openstack"
+zone_name = "example.com."
+email     = "hostmaster@example.com"
+zone_ttl  = 3600
+
+# Record names (map keys) MUST be fully qualified and end with a dot.
+recordsets = {
+  "www.example.com." = {
+    type    = "A"
+    ttl     = 300
+    records = ["192.0.2.10"]
+  }
+  "app.example.com." = {
+    type    = "CNAME"
+    ttl     = 300
+    records = ["www.example.com."]
+  }
+  "example.com." = {
+    type    = "MX"
+    ttl     = 3600
+    records = ["10 mail.example.com."]
+  }
+  "_dmarc.example.com." = {
+    type    = "TXT"
+    ttl     = 3600
+    records = ["v=DMARC1; p=none; rua=mailto:dmarc@example.com"]
+  }
+}

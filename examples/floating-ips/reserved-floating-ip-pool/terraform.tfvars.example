@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+external_network_name = "public"
+
+# One floating IP is reserved per name.
+reserved_ip_names = ["web", "api", "vpn", "spare"]
+
+tags = ["managed-by:terraform", "env:prod", "team:platform"]

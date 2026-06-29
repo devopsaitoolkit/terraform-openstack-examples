@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud                   = "openstack"
+volume_type_name        = "luks"
+volume_type_description = "LUKS-encrypted volumes (encryption configured via CLI/Barbican)"
+extra_specs = {
+  volume_backend_name = "lvmdriver-1"
+}
+volume_name = "example-encrypted-volume"
+volume_size = 10

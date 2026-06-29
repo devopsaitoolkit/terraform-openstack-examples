@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud      = "openstack"
+project_id = "00000000000000000000000000000000"
+
+volumes              = 20
+snapshots            = 20
+gigabytes            = 1000
+per_volume_gigabytes = 200
+backups              = 10
+backup_gigabytes     = 1000

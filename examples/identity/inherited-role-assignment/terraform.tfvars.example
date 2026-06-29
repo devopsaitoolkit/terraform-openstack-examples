@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud     = "openstack"
+domain_id = "default"
+role_name = "reader"
+user_id   = "00000000000000000000000000000000" # `openstack user show <name> -f value -c id`

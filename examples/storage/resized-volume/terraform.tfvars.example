@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud                = "openstack"
+volume_name          = "example-resizable-volume"
+volume_description   = "Resizable volume managed by Terraform"
+volume_size          = 10
+enable_online_resize = false

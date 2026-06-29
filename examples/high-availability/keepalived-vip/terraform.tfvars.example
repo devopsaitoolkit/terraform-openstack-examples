@@ -1,0 +1,21 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+name_prefix   = "keepalived"
+flavor_name   = "m1.small"
+image_name    = "ubuntu-22.04"
+network_name  = "private"
+subnet_name   = "private-subnet"
+key_pair_name = "my-keypair"
+
+# VIP must be inside the subnet CIDR and OUTSIDE the DHCP allocation pool.
+vip_address    = "192.168.0.10"
+vrrp_interface = "ens3" # eth0 on some images
+vrrp_router_id = 51
+vrrp_auth_pass = "changeit" # set a real secret; keep out of version control
+
+service_port   = 80
+admin_ssh_cidr = "10.0.0.0/24"
+
+tags = ["managed-by:terraform", "env:prod", "role:ha"]

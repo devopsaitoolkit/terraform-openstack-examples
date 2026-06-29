@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars and adjust for your two clouds/regions.
+# Each value must match an entry in clouds.yaml (see sample-clouds/clouds.yaml).
+
+cloud_region1 = "openstack"
+cloud_region2 = "openstack-region2"
+
+network_name = "example-multiregion"
+tags         = ["managed-by:terraform", "env:dev", "example:multi-region-providers"]

@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+router_name           = "prod-edge-router"
+external_network_name = "public"
+admin_state_up        = true
+enable_snat           = true
+
+tags = ["managed-by:terraform", "env:prod", "team:platform"]

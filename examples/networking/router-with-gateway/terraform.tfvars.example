@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+external_network_name = "public"
+router_name           = "example-router"
+network_name          = "example-network"
+subnet_name           = "example-subnet"
+cidr                  = "10.20.0.0/24"

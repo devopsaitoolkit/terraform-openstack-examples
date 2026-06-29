@@ -1,0 +1,27 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+secgroup_name = "web-prod"
+
+# Add or remove a rule by editing this map — no new resource blocks needed.
+# Note: a rule named/keyed for SSH on 0.0.0.0/0 is rejected by validation.
+ingress_rules = {
+  https = {
+    protocol = "tcp"
+    port     = 443
+    cidr     = "0.0.0.0/0"
+  }
+  http_redirect = {
+    protocol = "tcp"
+    port     = 80
+    cidr     = "0.0.0.0/0"
+  }
+  ssh_admin = {
+    protocol = "tcp"
+    port     = 22
+    cidr     = "203.0.113.0/24"
+  }
+}
+
+tags = ["managed-by:terraform", "env:prod", "tier:web"]

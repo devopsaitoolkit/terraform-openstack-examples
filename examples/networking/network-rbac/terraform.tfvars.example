@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+network_name = "example-shared-network"
+# Look this up per environment, e.g.:
+#   openstack project show <project-name> -f value -c id
+target_project_id = "REPLACE_WITH_TARGET_PROJECT_ID"

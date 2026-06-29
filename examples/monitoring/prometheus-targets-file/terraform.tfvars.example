@@ -1,0 +1,17 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud          = "openstack"
+instance_count = 3
+name_prefix    = "metrics-target"
+flavor_name    = "m1.small"
+image_name     = "ubuntu-22.04"
+network_name   = "private"
+key_pair_name  = "my-keypair"
+
+metrics_port      = 9100
+job_label         = "openstack-nodes"
+targets_file_path = "./prometheus/targets.json"
+
+security_group_names = ["default", "node-exporter"]
+tags                 = ["managed-by:terraform", "env:dev", "role:monitoring-target"]

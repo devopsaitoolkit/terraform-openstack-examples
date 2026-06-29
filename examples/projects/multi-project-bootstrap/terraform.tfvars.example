@@ -1,0 +1,21 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+# Leave empty ("") to use the token's default domain, or set an explicit
+# domain ID such as "default". Applied to every project below.
+domain_id = ""
+
+projects = {
+  team-alpha = {
+    description = "Project for team Alpha."
+    enabled     = true
+    tags        = ["managed-by:terraform", "team:alpha"]
+  }
+  team-beta = {
+    description = "Project for team Beta."
+    enabled     = true
+    tags        = ["managed-by:terraform", "team:beta"]
+  }
+}

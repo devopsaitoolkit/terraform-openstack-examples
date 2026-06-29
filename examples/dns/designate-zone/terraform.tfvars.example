@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud       = "openstack"
+zone_name   = "example.com."
+email       = "hostmaster@example.com"
+ttl         = 3600
+description = "Primary DNS zone managed by Terraform"

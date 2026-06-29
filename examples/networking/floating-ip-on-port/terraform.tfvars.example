@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+floating_ip_pool = "public"
+network_name     = "fip-demo-net"
+subnet_name      = "fip-demo-subnet"
+cidr             = "10.90.0.0/24"

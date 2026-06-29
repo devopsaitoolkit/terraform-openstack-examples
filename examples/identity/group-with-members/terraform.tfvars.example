@@ -1,0 +1,15 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud            = "openstack"
+group_name       = "payments-engineers"
+group_description = "Engineers who can operate the payments project"
+domain_id        = "default"
+role_name        = "member"
+project_id       = "11111111111111111111111111111111"
+
+# User UUIDs: `openstack user show <name> -f value -c id`
+member_user_ids = [
+  "00000000000000000000000000000000",
+  "22222222222222222222222222222222",
+]

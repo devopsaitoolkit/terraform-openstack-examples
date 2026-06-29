@@ -1,0 +1,19 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud       = "openstack"
+lb_name     = "web-lb"
+subnet_name = "private-subnet"
+
+http_port   = 80
+https_port  = 443
+member_port = 80
+
+backend_members = [
+  "10.0.0.11",
+  "10.0.0.12",
+]
+
+# Barbican container reference for the HTTPS listener certificate.
+# See ../tls-termination/ for how to create one.
+default_tls_container_ref = "https://barbican.example.com:9311/v1/containers/00000000-0000-0000-0000-000000000000"

@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                     = "openstack"
+user_name                 = "svc-automation"
+user_password             = "bootstrap-only-then-rotate"
+project_id                = "0123456789abcdef0123456789abcdef"
+role_name                 = "member"
+app_credential_name       = "svc-automation-cred"
+app_credential_expires_at = "2027-01-01T00:00:00Z"

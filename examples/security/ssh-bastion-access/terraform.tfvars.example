@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+bastion_secgroup_name = "bastion-prod"
+app_secgroup_name     = "app-prod"
+
+# Only your admin/VPN range may SSH into the bastion.
+bastion_admin_cidr = "203.0.113.0/24"
+app_port           = 8080
+
+tags = ["managed-by:terraform", "env:prod", "pattern:bastion"]

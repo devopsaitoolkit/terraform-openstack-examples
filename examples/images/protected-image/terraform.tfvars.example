@@ -1,0 +1,18 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud            = "openstack"
+image_name       = "golden-base-protected"
+image_source_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+disk_format      = "qcow2"
+container_format = "bare"
+web_download     = true
+
+# Set to false (then apply) before you are allowed to delete/destroy the image.
+protected  = true
+visibility = "private"
+
+min_disk_gb = 8
+min_ram_mb  = 512
+
+tags = ["managed-by:terraform", "tier:golden", "protected:true"]

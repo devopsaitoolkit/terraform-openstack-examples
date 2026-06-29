@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+trunk_name  = "example-trunk"
+parent_cidr = "10.70.0.0/24"
+sub1_cidr   = "10.70.1.0/24"
+sub2_cidr   = "10.70.2.0/24"
+sub1_seg_id = 101
+sub2_seg_id = 102

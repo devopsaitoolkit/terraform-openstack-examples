@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and adjust for your two clouds/regions.
+# The flavor, image, network, and key pair names must exist in BOTH regions.
+
+cloud_region1 = "openstack"
+cloud_region2 = "openstack-region2"
+
+instance_name = "web"
+flavor_name   = "m1.small"
+image_name    = "ubuntu-22.04"
+network_name  = "private"
+key_pair_name = "my-keypair"
+
+security_group_names = ["default"]
+tags                 = ["managed-by:terraform", "env:prod", "example:multi-region-instances"]

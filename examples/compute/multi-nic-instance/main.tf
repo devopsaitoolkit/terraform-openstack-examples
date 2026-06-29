@@ -1,0 +1,36 @@
+# Look up each network by name so we don't hard-code IDs that differ per cloud.
+data "openstack_networking_network_v2" "primary" {
+  name = var.network_name_primary
+}
+
+data "openstack_networking_network_v2" "secondary" {
+  name = var.network_name_secondary
+}
+
+resource "openstack_compute_instance_v2" "instance" {
+  name            = var.instance_name
+  flavor_name     = var.flavor_name
+  image_name      = var.image_name
+  key_pair        = var.key_pair_name != "" ? var.key_pair_name : null
+  security_groups = var.security_group_names
+  tags            = var.tags
+
+  # NIC ordering matters. The first network{} block is attached as eth0 and,
+  # because we mark it access_network = true, its address populates the
+  # instance access_ip_v4 output. Reorder the blocks (or move the
+  # access_network flag) to change which NIC Terraform treats as primary.
+  network {
+    uuid           = data.openstack_networking_network_v2.primary.id
+    access_network = true
+  }
+
+  network {
+    uuid = data.openstack_networking_network_v2.secondary.id
+  }
+
+  lifecycle {
+    # image_name maps to an image_id at create time; ignore drift so a rebuilt
+    # base image elsewhere doesn't force-replace a running instance.
+    ignore_changes = [image_name]
+  }
+}

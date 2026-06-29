@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud       = "openstack"
+lb_name     = "api-lb"
+subnet_name = "private-subnet"
+
+listener_port = 80
+member_port   = 8080
+
+# Add or remove IPs here; for_each only touches the member that changed.
+backend_members = [
+  "10.0.0.11",
+  "10.0.0.12",
+  "10.0.0.13",
+]

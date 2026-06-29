@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud        = "openstack"
+name         = "ci-deployer"
+description  = "Credential used by the CI pipeline to deploy infra"
+unrestricted = false
+
+# Restrict to the minimum roles needed (role names). Empty = all the user's roles.
+roles = ["member"]
+
+# RFC3339; empty string = never expires (avoid for automation).
+expires_at = "2026-12-31T23:59:59Z"

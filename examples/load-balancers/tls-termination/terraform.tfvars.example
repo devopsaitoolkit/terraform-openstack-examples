@@ -1,0 +1,24 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud       = "openstack"
+lb_name     = "secure-lb"
+subnet_name = "private-subnet"
+
+https_port  = 443
+member_port = 80
+
+backend_members = [
+  "10.0.0.11",
+  "10.0.0.12",
+]
+
+# Barbican container reference for the server certificate + key + chain.
+# Create it first (see README "Working with Barbican"), then paste the ref:
+#   openstack secret container list
+default_tls_container_ref = "https://barbican.example.com:9311/v1/containers/00000000-0000-0000-0000-000000000000"
+
+# Optional extra certs for SNI (multiple hostnames on one listener):
+# sni_container_refs = [
+#   "https://barbican.example.com:9311/v1/containers/11111111-1111-1111-1111-111111111111",
+# ]

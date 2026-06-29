@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+external_network_name = "public"
+dns_name              = "web-01"
+dns_domain            = "example.com." # must be an existing Designate zone, trailing dot required
+description           = "public address + DNS for web-01"
+
+tags = ["managed-by:terraform", "env:dev", "app:web"]

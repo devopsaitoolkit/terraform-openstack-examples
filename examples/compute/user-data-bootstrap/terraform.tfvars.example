@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+instance_name = "web-bootstrap-01"
+flavor_name   = "m1.small"
+image_name    = "ubuntu-22.04"
+network_name  = "private"
+key_pair_name = "my-keypair"
+
+motd = "Welcome to the Terraform-provisioned web node."
+
+security_group_names = ["default"]
+tags                 = ["managed-by:terraform", "env:dev", "app:web"]

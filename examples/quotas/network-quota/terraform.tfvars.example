@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud      = "openstack"
+project_id = "00000000000000000000000000000000"
+
+network             = 10
+subnet              = 10
+port                = 50
+router              = 10
+floatingip          = 10
+security_group      = 10
+security_group_rule = 100

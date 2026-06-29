@@ -1,0 +1,17 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+instance_name = "metrics-target-01"
+flavor_name   = "m1.small"
+image_name    = "ubuntu-22.04"
+network_name  = "private"
+key_pair_name = "my-keypair"
+
+# Only your Prometheus server's subnet should be able to scrape host metrics.
+monitoring_cidr       = "10.0.0.0/24"
+node_exporter_version = "1.8.2"
+metrics_port          = 9100
+security_group_name   = "node-exporter"
+
+tags = ["managed-by:terraform", "env:dev", "role:monitoring-target"]

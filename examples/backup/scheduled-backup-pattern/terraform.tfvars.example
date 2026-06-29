@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud              = "openstack"
+volume_id          = "11111111-2222-3333-4444-555555555555"
+script_path        = "/usr/local/bin/cinder-backup.sh"
+backup_name_prefix = "scheduled-backup"
+schedule           = "0 2 * * *"

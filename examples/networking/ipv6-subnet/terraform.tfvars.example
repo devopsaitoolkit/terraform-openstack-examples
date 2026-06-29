@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+network_name = "dualstack"
+cidr_v4      = "10.60.0.0/24"
+cidr_v6      = "fd00:60::/64"

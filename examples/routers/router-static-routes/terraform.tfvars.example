@@ -1,0 +1,21 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+router_name           = "hybrid-router"
+external_network_name = "public"
+enable_snat           = true
+
+# next_hop must be an address reachable on a subnet this router is attached to.
+routes = {
+  onprem = {
+    destination_cidr = "10.100.0.0/16"
+    next_hop         = "192.168.0.254"
+  }
+  partner = {
+    destination_cidr = "203.0.113.0/24"
+    next_hop         = "192.168.0.250"
+  }
+}
+
+tags = ["managed-by:terraform", "env:prod", "team:network"]

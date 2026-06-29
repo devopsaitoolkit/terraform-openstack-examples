@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud      = "openstack"
+project_id = "00000000000000000000000000000000"
+
+instances      = 10
+cores          = 20
+ram            = 51200 # MB
+key_pairs      = 10
+metadata_items = 128

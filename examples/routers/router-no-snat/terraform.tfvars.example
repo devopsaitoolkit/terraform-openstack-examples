@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+router_name           = "routed-edge-router"
+external_network_name = "provider" # a routed/provider network, not a NAT pool
+enable_snat           = false      # preserve internal source IPs end-to-end
+
+tags = ["managed-by:terraform", "env:prod", "team:network"]

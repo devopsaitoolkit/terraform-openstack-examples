@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud               = "openstack"
+project_name        = "team-payments"
+project_description = "Payments team workloads"
+domain_id           = "default"
+enabled             = true
+
+tags = ["managed-by:terraform", "team:payments", "env:prod"]

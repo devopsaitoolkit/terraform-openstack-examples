@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud             = "openstack"
+web_secgroup_name = "web-prod"
+db_secgroup_name  = "db-prod"
+
+admin_ssh_cidr = "203.0.113.0/24"
+db_port        = 5432
+
+tags = ["managed-by:terraform", "env:prod", "app:store"]

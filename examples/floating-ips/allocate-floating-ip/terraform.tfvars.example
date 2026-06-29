@@ -1,0 +1,8 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+external_network_name = "public"
+description           = "reserved for web-01"
+
+tags = ["managed-by:terraform", "env:dev", "app:web"]

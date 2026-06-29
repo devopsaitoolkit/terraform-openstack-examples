@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud                   = "openstack"
+volume_type_name        = "ssd"
+volume_type_description = "SSD-backed volumes"
+is_public               = true
+extra_specs = {
+  "volume_backend_name" = "lvmdriver-1"
+}
+volume_name = "example-ssd-volume"
+volume_size = 10

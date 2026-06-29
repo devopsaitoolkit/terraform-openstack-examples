@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+keypair_name  = "my-managed-keypair"
+instance_name = "bastion-01"
+flavor_name   = "m1.small"
+image_name    = "ubuntu-22.04"
+network_name  = "private"
+
+# Paste the CONTENTS of your public key (never the private key).
+# Tip: public_key = file("~/.ssh/id_ed25519.pub")
+public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAExampleExampleExampleExample user@host"
+
+security_group_names = ["default"]
+tags                 = ["managed-by:terraform", "env:dev", "app:bastion"]

@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+user_name     = "alice"
+user_password = "change-me-then-rotate"
+project_id    = "0123456789abcdef0123456789abcdef"
+enabled       = true
+role_names    = ["member", "reader"]

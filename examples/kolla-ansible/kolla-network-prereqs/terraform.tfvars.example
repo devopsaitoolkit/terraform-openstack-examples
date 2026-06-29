@@ -1,0 +1,19 @@
+# Copy to terraform.tfvars and adjust CIDRs/provider mapping for your fabric.
+
+cloud       = "openstack"
+name_prefix = "kolla"
+
+management_cidr = "10.10.0.0/24"
+tunnel_cidr     = "10.10.1.0/24"
+
+external_cidr             = "203.0.113.0/24"
+external_gateway_ip       = "203.0.113.1"
+external_allocation_start = "203.0.113.10"
+external_allocation_end   = "203.0.113.250"
+
+# Must match openvswitch/ml2 bridge mappings on your network nodes.
+external_physical_network = "physnet1"
+external_network_type     = "flat"
+
+dns_nameservers = ["1.1.1.1", "8.8.8.8"]
+tags            = ["managed-by:terraform", "env:lab", "example:kolla-network-prereqs"]

@@ -1,0 +1,21 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud              = "openstack"
+project_name       = "team-data"
+project_description = "Data team sandbox with capped quotas"
+domain_id          = "default"
+
+# Compute (Nova)
+compute_instances = 20
+compute_cores     = 40
+compute_ram_mb    = 102400
+compute_key_pairs = 100
+
+# Network (Neutron)
+network_count        = 5
+subnet_count         = 10
+port_count           = 200
+router_count         = 3
+floatingip_count     = 15
+security_group_count = 20

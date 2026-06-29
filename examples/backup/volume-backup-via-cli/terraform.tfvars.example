@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud              = "openstack"
+volume_id          = "11111111-2222-3333-4444-555555555555"
+backup_name        = "tf-backup"
+backup_description = "Created by Terraform via CLI"
+incremental        = false
+force              = true

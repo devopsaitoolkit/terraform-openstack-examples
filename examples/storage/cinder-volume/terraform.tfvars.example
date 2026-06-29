@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud = "openstack"
+
+volume_name        = "example-volume"
+volume_description = "Managed by Terraform"
+volume_size        = 10
+volume_type        = ""
+metadata = {
+  "managed-by" = "terraform"
+  "environment" = "dev"
+}

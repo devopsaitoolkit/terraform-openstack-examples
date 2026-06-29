@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                = "openstack"
+instance_name_prefix = "ha-app"
+# Use the zones your cloud reports: `openstack availability zone list`.
+availability_zones = ["az1", "az2", "az3"]
+flavor_name        = "m1.small"
+image_name         = "ubuntu-22.04"
+network_name       = "private"
+key_pair_name      = "my-keypair"
+
+security_group_names = ["default"]
+tags                 = ["managed-by:terraform", "env:prod", "role:ha"]

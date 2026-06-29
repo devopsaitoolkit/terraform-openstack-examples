@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+# NOTE: requires admin credentials and a host bridge mapping for physical_network.
+
+cloud = "openstack"
+
+network_name     = "example-provider-network"
+subnet_name      = "example-provider-subnet"
+cidr             = "10.30.0.0/24"
+network_type     = "flat"
+physical_network = "physnet1"
+segmentation_id  = 0

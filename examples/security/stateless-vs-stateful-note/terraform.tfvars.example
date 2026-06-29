@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+secgroup_name = "web-stateful"
+
+https_cidr        = "0.0.0.0/0"
+egress_https_cidr = "10.0.0.0/8"
+dns_resolver_cidr = "10.0.0.2/32"
+
+tags = ["managed-by:terraform", "env:prod", "note:stateful"]

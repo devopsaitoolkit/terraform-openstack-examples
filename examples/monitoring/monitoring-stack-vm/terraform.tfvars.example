@@ -1,0 +1,23 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud         = "openstack"
+instance_name = "monitoring-stack"
+flavor_name   = "m1.large"
+image_name    = "ubuntu-22.04"
+network_name  = "private"
+key_pair_name = "my-keypair"
+
+# Restrict UIs to operator networks — neither service is internet-safe by default.
+monitoring_cidr = "10.0.0.0/24"
+grafana_cidr    = "10.0.0.0/24"
+prometheus_port = 9090
+grafana_port    = 3000
+
+tsdb_volume_size   = 100
+tsdb_volume_type   = "" # empty = project default volume type
+tsdb_device        = "/dev/vdb"
+prometheus_version = "2.53.0"
+
+security_group_name = "monitoring-stack"
+tags                = ["managed-by:terraform", "env:dev", "role:monitoring"]

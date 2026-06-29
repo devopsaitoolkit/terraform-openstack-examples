@@ -1,0 +1,9 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+# Leave both empty to create the credential for the authenticated user/project.
+# Setting these to target another user/project requires an admin-scoped cloud.
+user_id    = ""
+project_id = ""

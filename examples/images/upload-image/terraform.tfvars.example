@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud            = "openstack"
+image_name       = "ubuntu-22.04-jammy"
+image_source_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+disk_format      = "qcow2"
+container_format = "bare"
+min_disk_gb      = 8
+min_ram_mb       = 512
+visibility       = "private"
+web_download     = true
+
+tags = ["managed-by:terraform", "os:ubuntu", "release:jammy"]

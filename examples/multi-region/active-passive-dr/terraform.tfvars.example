@@ -1,0 +1,24 @@
+# Copy to terraform.tfvars and adjust. Steady state below: primary is live,
+# standby network exists but runs zero instances.
+
+cloud_primary = "openstack"
+cloud_standby = "openstack-region2"
+
+name_prefix = "app-dr"
+subnet_cidr = "10.50.0.0/24"
+
+flavor_name   = "m1.small"
+image_name    = "ubuntu-22.04"
+key_pair_name = "my-keypair"
+
+security_group_names = ["default"]
+
+# Steady state: primary active, standby cold (cheap).
+primary_instance_count = 2
+standby_instance_count = 0
+
+# Failover: flip these (primary -> 0, standby -> 2) and re-apply.
+# primary_instance_count = 0
+# standby_instance_count = 2
+
+tags = ["managed-by:terraform", "env:prod", "example:active-passive-dr"]

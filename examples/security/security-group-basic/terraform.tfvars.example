@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                = "openstack"
+secgroup_name        = "web-prod"
+secgroup_description = "Production web tier"
+
+# Scope SSH to your office/VPN/jump-host range. 0.0.0.0/0 is rejected.
+admin_ssh_cidr = "203.0.113.0/24"
+
+# Public web service, so HTTPS is intentionally open to the world.
+https_cidr = "0.0.0.0/0"
+
+tags = ["managed-by:terraform", "env:prod", "tier:web"]

@@ -1,0 +1,10 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud                 = "openstack"
+external_network_name = "public"
+port_id               = "00000000-0000-0000-0000-000000000000" # openstack port list
+# fixed_ip            = "192.168.0.12" # only if the port has multiple fixed IPs
+description           = "public address for web-01"
+
+tags = ["managed-by:terraform", "env:dev", "app:web"]

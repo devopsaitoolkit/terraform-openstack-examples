@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Rendered by Terraform templatefile() and passed to Nova as user_data.
+# cloud-init runs this on first boot to install and configure keepalived so the
+# pair shares a floating VIP via VRRP. $${...} tokens are filled in by Terraform.
+set -euo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -y
+apt-get install -y --no-install-recommends keepalived
+
+# The config is written with a quoted heredoc so the shell does NOT expand it;
+# Terraform has already substituted the template variables.
+cat > /etc/keepalived/keepalived.conf <<'EOF'
+vrrp_instance VI_1 {
+    state ${state}
+    interface ${vrrp_interface}
+    virtual_router_id ${vrrp_router_id}
+    priority ${priority}
+    advert_int 1
+
+    authentication {
+        auth_type PASS
+        auth_pass ${vrrp_auth_pass}
+    }
+
+    virtual_ipaddress {
+        ${vip_address}
+    }
+}
+EOF
+
+systemctl enable --now keepalived
+systemctl restart keepalived
+echo "[keepalived] ${state} (priority ${priority}) advertising VIP ${vip_address} on ${vrrp_interface}"

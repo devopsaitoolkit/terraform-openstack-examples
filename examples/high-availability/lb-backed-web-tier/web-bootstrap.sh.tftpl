@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Rendered by Terraform templatefile() and passed to Nova as user_data.
+# cloud-init runs this on first boot to install nginx and serve a page that
+# identifies the backend, so you can watch the load balancer rotate members.
+set -euo pipefail
+
+export DEBIAN_FRONTEND=noninteractive
+apt-get update -y
+apt-get install -y --no-install-recommends nginx
+
+HOSTNAME="$(hostname)"
+cat > /var/www/html/index.html <<EOF
+<!doctype html>
+<html><body>
+<h1>${name_prefix} backend</h1>
+<p>Served by $${HOSTNAME}</p>
+</body></html>
+EOF
+
+# Ensure nginx listens on the member port the pool sends traffic to.
+if [ "${member_port}" != "80" ]; then
+  sed -i "s/listen 80 default_server;/listen ${member_port} default_server;/" /etc/nginx/sites-available/default || true
+  sed -i "s/listen \[::\]:80 default_server;/listen [::]:${member_port} default_server;/" /etc/nginx/sites-available/default || true
+fi
+
+systemctl enable --now nginx
+systemctl restart nginx
+echo "[web] nginx serving on :${member_port}"

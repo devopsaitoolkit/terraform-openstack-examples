@@ -1,0 +1,6 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud                = "openstack"
+volume_id            = "11111111-2222-3333-4444-555555555555"
+snapshot_name        = "tf-snapshot"
+snapshot_description = "Created by Terraform via CLI"
+force                = false

@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud       = "openstack"
+parent_name = "engineering"
+child_name  = "engineering-platform"
+description = "Engineering org unit and its platform team project."
+
+# Leave empty ("") to use the token's default domain, or set an explicit
+# domain ID such as "default". The child inherits the parent's domain.
+domain_id = ""

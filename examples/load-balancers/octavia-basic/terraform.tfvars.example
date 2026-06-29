@@ -1,0 +1,14 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud       = "openstack"
+lb_name     = "web-lb"
+subnet_name = "private-subnet"
+
+listener_port = 80
+member_port   = 80
+
+member_a_address = "10.0.0.11"
+member_b_address = "10.0.0.12"
+
+monitor_url_path = "/healthz"

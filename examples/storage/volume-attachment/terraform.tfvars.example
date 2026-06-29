@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+cloud = "openstack"
+
+volume_name = "example-data-volume"
+volume_size = 10
+instance_id = "00000000-0000-0000-0000-000000000000"
+device      = "/dev/vdb"

@@ -1,0 +1,23 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud       = "openstack"
+lb_name     = "edge-lb"
+subnet_name = "private-subnet"
+
+listener_port = 80
+member_port   = 80
+
+# Everything not matching the prefix goes here.
+web_members = [
+  "10.0.0.11",
+  "10.0.0.12",
+]
+
+# Requests starting with api_path_prefix go here.
+api_members = [
+  "10.0.0.21",
+  "10.0.0.22",
+]
+
+api_path_prefix = "/api"

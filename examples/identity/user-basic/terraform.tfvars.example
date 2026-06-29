@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+#
+# Do NOT commit a real password. Prefer one of:
+#   export TF_VAR_user_password='...'      # pass via environment
+#   terraform apply -var-file=secret.tfvars # keep secrets out of VCS
+# and prefer application credentials over passwords entirely (see README).
+
+cloud              = "openstack"
+user_name          = "svc-ci"
+default_project_id = "" # e.g. "9f3c...  (project UUID)"
+domain_id          = "default"
+description        = "CI service account"
+
+# user_password = "set-via-TF_VAR_user_password-instead"
+ignore_change_password_upon_first_use = true

@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and adjust for your cloud.
+# (terraform.tfvars is gitignored so you never commit environment specifics.)
+
+cloud = "openstack"
+
+network_name = "private"
+port_name    = "example-no-port-security"
