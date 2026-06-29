@@ -1,0 +1,42 @@
+name: TFLint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tflint:
+    name: TFLint (examples + modules)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache TFLint plugins
+        uses: actions/cache@v4
+        with:
+          path: ~/.tflint.d/plugins
+          key: tflint-${{ hashFiles('.tflint.hcl') }}
+
+      - uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: v0.53.0
+
+      - name: Show version
+        run: tflint --version
+
+      # Installs the rulesets declared in .tflint.hcl (the terraform ruleset).
+      # GITHUB_TOKEN avoids GitHub API rate limits during plugin download.
+      - name: Init TFLint
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: tflint --init
+
+      # Recursively lints every directory that contains Terraform files —
+      # all examples and modules — using the repo's .tflint.hcl config.
+      - name: Run TFLint
+        run: tflint --recursive -f compact
