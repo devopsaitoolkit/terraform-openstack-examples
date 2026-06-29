@@ -45,7 +45,7 @@ by a full backup (or the backend must accept the first incremental as full).
 | volume_id          | UUID of the volume the generated wrapper script will back up.                       | string | (required)                     |
 | script_path        | Absolute path where the backup wrapper script will be written.                      | string | "/usr/local/bin/cinder-backup.sh" |
 | backup_name_prefix | Prefix for generated backup names; a timestamp is appended at run time.             | string | "scheduled-backup"             |
-| schedule           | Cron expression documenting the intended schedule (documentation only).             | string | "0 2 * * *"                    |
+| schedule           | Cron expression documenting the intended schedule (documentation only).             | string | "0 2 ** *"                    |
 
 ## Outputs
 

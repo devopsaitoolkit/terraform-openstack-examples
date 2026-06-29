@@ -53,7 +53,7 @@ terraform apply
 - **Common mistakes:** Hard-coding the target tenant UUID in code (here it is a
   variable, resolved per environment); confusing `access_as_shared` (attach to
   the network) with `access_as_external` (use it as an external/gateway network);
-  expecting the target project to *see* the network before the policy applies.
+  expecting the target project to _see_ the network before the policy applies.
 - **Scaling considerations:** To share with several projects, create one RBAC
   policy per project — drive them with `for_each` over a set of project IDs rather
   than reaching for `shared = true`.

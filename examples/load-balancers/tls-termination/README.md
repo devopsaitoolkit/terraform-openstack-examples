@@ -85,7 +85,7 @@ terraform apply
 - **Why this approach:** Terminating TLS at the LB centralises certificate
   management in Barbican, keeps keys out of Terraform state, and lets backends
   stay simple HTTP servers.
-- **Common mistakes:** Passing a *secret* href instead of a *container* href;
+- **Common mistakes:** Passing a _secret_ href instead of a _container_ href;
   forgetting to grant Octavia ACL access to the secrets; omitting the
   intermediate chain (browsers then show chain errors).
 - **Scaling considerations:** Use `sni_container_refs` to host many certificates
@@ -99,7 +99,7 @@ terraform apply
 ## Security considerations
 
 - Keep keys in Barbican, never in `.tf`/`.tfvars` or state — this example only
-  stores a *reference*.
+  stores a _reference_.
 - Disable legacy TLS (set `tls_versions` to TLS 1.2+) and consider HSTS via the
   listener `hsts_*` arguments for public sites.
 - Termination means LB-to-member traffic is plaintext on the internal subnet; if
